@@ -1,0 +1,115 @@
+# Reddit to TikTok Video Generator Configuration
+# =============================================
+
+# Subreddits to fetch stories from
+# Add or remove subreddits as needed
+subreddits:
+  - AmItheAsshole
+  - TrueOffMyChest
+  - tifu
+  - relationship_advice
+  - confessions
+  - offmychest
+
+# Story filtering settings
+filtering:
+  # Minimum character count for story text
+  min_story_length: 500
+  # Maximum character count for story text
+  max_story_length: 5000
+  # Whether to include NSFW posts
+  allow_nsfw: false
+  # Posts containing these keywords will be skipped
+  banned_keywords:
+    - "[removed]"
+    - "[deleted]"
+    - "spam"
+    - "advertisement"
+    - "promo"
+
+# Reddit API fetch settings
+reddit:
+  # Sort mode: hot, new, top, rising, controversial
+  sort_mode: top
+  # Time filter (only applies to 'top' and 'controversial')
+  # Options: hour, day, week, month, year, all
+  time_filter: week
+  # Number of posts to fetch per request
+  fetch_limit: 25
+
+# Video output settings
+video:
+  # Path to your background video file
+  # Use your own recorded footage or royalty-free content
+  background_video_path: assets/minecraft_parkour.mp4
+  # Output directory for generated files
+  output_directory: output
+  # Video dimensions (TikTok vertical format)
+  width: 1080
+  height: 1920
+  # Video framerate
+  fps: 30
+  # Video codec settings
+  video_codec: libx264
+  audio_codec: aac
+  # CRF value (lower = better quality, larger file)
+  crf: 23
+
+# Text-to-Speech settings
+tts:
+  # Provider: "local" (pyttsx3) or "api" (external service)
+  provider: local
+  # Speech rate in words per minute
+  speech_rate: 150
+  # Local TTS voice settings (macOS)
+  local:
+    # Voice ID (leave empty for system default)
+    voice_id: ""
+    # Rate adjustment (-10 to 10)
+    rate: 0
+    # Volume (0.0 to 1.0)
+    volume: 1.0
+  # API TTS settings (placeholder - configure in .env)
+  api:
+    # Will use TTS_API_URL and TTS_API_KEY from environment
+    voice: "default"
+    format: "wav"
+
+# Story rewriter settings
+rewriter:
+  # Provider: "anthropic", "openai", or "dummy"
+  provider: anthropic
+  # Target word count for rewritten script (for ~30-60 sec video)
+  target_word_count: 200
+  # Maximum word count
+  max_word_count: 300
+  # Anthropic model (if using anthropic provider)
+  anthropic_model: claude-3-haiku-20240307
+  # OpenAI model (if using openai provider)
+  openai_model: gpt-3.5-turbo
+
+# Subtitle settings
+subtitles:
+  # Enable subtitle generation
+  enabled: true
+  # Font settings
+  font_name: Arial
+  font_size: 48
+  # Font color (hex without #)
+  font_color: "FFFFFF"
+  # Outline/border color
+  outline_color: "000000"
+  outline_width: 3
+  # Position from bottom (in pixels)
+  margin_bottom: 150
+  # Maximum characters per line
+  max_chars_per_line: 35
+  # Words per subtitle segment
+  words_per_segment: 4
+
+# Logging settings
+logging:
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+  # Log file path (empty for console only)
+  file: ""
